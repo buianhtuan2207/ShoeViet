@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Product from "../pages/Product";
 import ProductDetail from "../pages/ProductDetail";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 
 function AppRoutes() {
@@ -18,6 +19,7 @@ function AppRoutes() {
                 <Route path="/product" element={<Product />} />
                 <Route path="/detail/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
             </Route>
 
             {/* 3. Xử lý khi người dùng nhập sai URL (Redirect về Home hoặc trang 404) */}

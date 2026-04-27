@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Cart.css';
+import { Link } from 'react-router-dom';
 
 function Cart() {
     const [items, setItems] = useState([
@@ -131,10 +132,10 @@ function Cart() {
                             <span className="total-amount">${total.toFixed(2)}</span>
                         </div>
 
-                        <button className="checkout-btn">
+                        <Link to="/checkout" className="checkout-btn">
                             Tiến hành thanh toán
                             <span className="material-symbols-outlined">arrow_forward</span>
-                        </button>
+                        </Link>
                         <p className="tax-note">Thuế sẽ được tính toán tại bước thanh toán.</p>
                     </div>
                 </aside>
