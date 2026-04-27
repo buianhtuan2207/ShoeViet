@@ -4,6 +4,7 @@ import MainLayout from '../layout/MainLayout';
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import ProductDetail from "../pages/ProductDetail";
+import Cart from "../pages/Cart";
 
 
 function AppRoutes() {
@@ -16,6 +17,7 @@ function AppRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
                 <Route path="/detail/:id" element={<ProductDetail />} />
+                <Route path="/cart" element={<Cart />} />
             </Route>
 
             {/* 3. Xử lý khi người dùng nhập sai URL (Redirect về Home hoặc trang 404) */}
