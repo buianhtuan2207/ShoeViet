@@ -32,9 +32,9 @@ function Header() {
 
                 {/* 4. Các nút Icon (Nằm bên phải) */}
                 <div className="header-icons">
-                    <button className="action-button">
+                    <Link to="/cart" className="action-button">
                         <span className="material-symbols-outlined">shopping_cart</span>
-                    </button>
+                    </Link>
                     <button className="action-button">
                         <span className="material-symbols-outlined">favorite_border</span>
                     </button>
