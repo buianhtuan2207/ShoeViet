@@ -7,6 +7,7 @@ import ProductDetail from "../pages/ProductDetail";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 
 function AppRoutes() {
@@ -17,6 +18,7 @@ function AppRoutes() {
             {/* 2. Nhóm Route dùng MainLayout (Cần Header/Footer/Sidebar) */}
             <Route element={<MainLayout />}>
                 <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
                 <Route path="/detail/:id" element={<ProductDetail />} />

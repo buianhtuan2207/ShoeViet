@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; // Bổ sung useState
 import styles from './Register.module.scss';
+import {Link} from "react-router-dom";
 
 function Register() {
 
@@ -144,7 +145,7 @@ function Register() {
                         {/* Redirect */}
                         <div className={styles.redirect}>
                             <p>
-                                Bạn đã có tài khoản? <a href="#">Đăng nhập</a>
+                                Bạn đã có tài khoản? <Link to="/login" href="#">Đăng nhập</Link>
                             </p>
                         </div>
                     </form>
