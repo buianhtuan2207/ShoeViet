@@ -31,7 +31,7 @@ function Login() {
                             <label htmlFor="password" className={styles.noMarginBottom}>
                                 Mật khẩu
                             </label>
-                            <a href="#">Quên mật khẩu?</a>
+                            <Link to="/forgotpw" href="#">Quên mật khẩu?</Link>
                         </div>
                         <div className={styles.inputWrapper}>
                             <input
