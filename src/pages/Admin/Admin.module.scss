@@ -1,0 +1,12 @@
+/* Admin.module.scss */
+
+.adminLayout {
+  min-height: 100vh;
+  /* Bạn có thể dùng biến CSS hoặc mã màu hex trực tiếp tùy theo setup của dự án */
+  background-color: var(--surface-container, #f4eff4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: hidden;
+}

@@ -1,0 +1,789 @@
+
+$bg-main: #f8fafc;
+$surface: #ffffff;
+$border-color: #e2e8f0;
+
+$text-main: #0f172a;
+$text-muted: #64748b;
+$text-light: #94a3b8;
+
+$primary: #4f46e5;
+$primary-light: #e0e7ff;
+$secondary: #0ea5e9;
+$secondary-light: #e0f2fe;
+$tertiary: #10b981;
+$tertiary-light: #d1fae5;
+
+$success: #16a34a;
+$success-light: #dcfce7;
+$error: #ef4444;
+$error-light: #fee2e2;
+
+.main {
+  margin-left: 260px; /* Khớp với chiều rộng Sidebar */
+  padding-top: 64px;  /* Khớp với chiều cao Header */
+  min-height: 100vh;
+  background-color: $bg-main;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   1. Page Header Section
+   ========================================================================== */
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.pageTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: $text-main;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $text-muted;
+  margin: 6px 0 0 0;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  background-color: $primary;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba($primary, 0.2);
+  transition: all 0.2s ease;
+
+  .addBtnLabel {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: darken($primary, 5%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba($primary, 0.25);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. Stats Overview Cards
+   ========================================================================== */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.statCard {
+  grid-column: span 12;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+
+  @media (min-width: 768px) {
+    grid-column: span 4;
+  }
+}
+
+.statCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.statIconWrapper {
+  padding: 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.secondary { background-color: $secondary-light; color: darken($secondary, 10%); }
+  &.primary { background-color: $primary-light; color: $primary; }
+  &.tertiary { background-color: $tertiary-light; color: darken($tertiary, 10%); }
+}
+
+.trendTag {
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &.positive { color: $success; }
+  &.neutral { color: $text-muted; }
+}
+
+.statCardContent {
+  margin-top: 16px;
+}
+
+.statLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-light;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 6px 0;
+}
+
+.statValue {
+  font-size: 30px;
+  font-weight: 700;
+  color: $text-main;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+
+  .currencyUnit {
+    font-size: 18px;
+    color: $text-light;
+    font-weight: 500;
+  }
+}
+
+/* ==========================================================================
+   3. Filter Bar Section
+   ========================================================================== */
+.filtersBar {
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.tabBtn {
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: $text-muted;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $bg-main;
+    color: $text-main;
+  }
+
+  &.active {
+    background-color: rgba($primary, 0.08);
+    color: $primary;
+  }
+}
+
+.actionButtonGroup {
+  display: flex;
+  gap: 8px;
+
+  @media (max-width: 640px) {
+    width: 100%;
+
+    button { flex: 1; }
+  }
+}
+
+.utilBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  color: $text-main;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: #fdfdfd;
+    border-color: darken($border-color, 10%);
+  }
+}
+
+/* ==========================================================================
+   4. Coupon Data Table Area
+   ========================================================================== */
+.tableCard {
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.th {
+  padding: 14px 20px;
+  background-color: #fafafa;
+  border-bottom: 1px solid $border-color;
+  font-weight: 600;
+  color: $text-light;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.textRight { text-align: right; }
+}
+
+.tr {
+  border-bottom: 1px solid $border-color;
+  transition: background-color 0.2s ease;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    background-color: #f8fafc;
+
+    .actionsWrapper {
+      opacity: 1;
+    }
+  }
+
+  &.pastEventRow {
+    background-color: rgba($bg-main, 0.4);
+  }
+}
+
+.td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: $text-main;
+  vertical-align: middle;
+
+  &.textRight { text-align: right; }
+}
+
+/* Thành phần bên trong bảng dữ liệu */
+.couponMetaWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.couponIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.percentage { background-color: rgba($primary, 0.08); color: $primary; }
+  &.fixed { background-color: rgba($secondary, 0.08); color: darken($secondary, 15%); }
+  &.history { background-color: $secondary-light; color: $text-muted; }
+}
+
+.couponCodeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-main;
+  margin: 0;
+}
+
+.couponSubtitle {
+  font-size: 12px;
+  color: $text-muted;
+  margin: 2px 0 0 0;
+}
+
+.couponTypeCell {
+  color: $text-main;
+}
+
+.valueHighlight {
+  font-weight: 700;
+
+  &.primaryColor { color: $primary; }
+  &.normalColor { color: $text-main; }
+  &.mutedColor { color: $text-muted; }
+}
+
+.timeCellLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+
+  .primaryTime { color: $text-main; }
+  .secondaryTime { color: $text-muted; }
+}
+
+/* Thanh Tiến Trình Giới Hạn Sử Dụng */
+.progressContainer {
+  width: 100%;
+  max-width: 110px;
+}
+
+.progressLabelText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-bottom: 4px;
+
+  .usedCount { font-weight: 700; color: $text-main; }
+  .totalLimit { color: $text-muted; }
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 6px;
+  background-color: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 999px;
+
+  &.primary { background-color: $primary; }
+  &.secondary { background-color: darken($secondary, 5%); }
+  &.muted { background-color: $text-light; }
+}
+
+/* Badges Trạng thái */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+
+  &.running { background-color: $success-light; color: $success; }
+  &.ended { background-color: #f1f5f9; color: $text-muted; }
+}
+
+/* Cụm Nút Thao Tác Hoạt Động */
+.actionsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2px;
+  opacity: 0; /* Hiện mượt mà khi hover vào hàng */
+  transition: opacity 0.15s ease;
+
+  @media (max-width: 1024px) {
+    opacity: 1;
+  }
+}
+
+.actionBtn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: $text-muted;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: $text-main;
+    background-color: #f1f5f9;
+  }
+
+  &.blockBtn:hover {
+    color: $error;
+    background-color: $error-light;
+  }
+}
+
+/* Phân Trang (Pagination) */
+.pagination {
+  padding: 14px 20px;
+  background-color: $surface;
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.paginationText {
+  font-size: 13px;
+  color: $text-muted;
+  margin: 0;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pageBtn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 4px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $bg-main;
+    color: $text-main;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  &.active {
+    background-color: $primary;
+    color: #ffffff;
+  }
+}
+
+.ellipsis {
+  padding: 0 4px;
+  color: $text-light;
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   5. Promotion Visualization Area (Bento Layout Chi Tiết)
+   ========================================================================== */
+.bentoSectionGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.bentoLeftChart {
+  grid-column: span 12;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 14px;
+  padding: 24px;
+
+  @media (min-width: 1024px) {
+    grid-column: span 8;
+  }
+}
+
+.chartTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: $text-main;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .chartTitleIcon { color: $primary; }
+}
+
+/* Mô Phỏng Đồ Thị Cột */
+.chartCanvasMock {
+  height: 240px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 16px 24px 16px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.chartGridLines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 16px 32px 16px;
+  opacity: 0.4;
+  pointer-events: none;
+
+  .gridLine {
+    border-top: 1px dashed $border-color;
+    width: 100%;
+  }
+}
+
+.chartColumnGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 48px;
+  z-index: 1;
+
+  &:hover {
+    .columnBar {
+      background-color: $primary;
+    }
+    .chartTooltip {
+      opacity: 1;
+    }
+  }
+}
+
+.columnBarWrapper {
+  width: 32px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.columnBar {
+  width: 100%;
+  background-color: rgba($primary, 0.2);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.peakBar {
+    background-color: rgba($primary, 0.35);
+  }
+}
+
+.chartTooltip {
+  position: absolute;
+  top: -32px;
+  left: 51%;
+  transform: translateX(-50%);
+  background-color: $text-main;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.axisLabel {
+  font-size: 12px;
+  color: $text-light;
+  font-weight: 600;
+}
+
+/* Cột Phải Khối Bento */
+.bentoRightStack {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: 1024px) {
+    grid-column: span 4;
+  }
+}
+
+/* Khối Mẹo Quản Trị */
+.tipBannerCard {
+  background-color: $primary;
+  color: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .bgDecorativeIcon {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+.bgDecorativeIcon {
+  position: absolute;
+  right: -16px;
+  bottom: -16px;
+  font-size: 120px;
+  opacity: 0.1;
+  transition: transform 0.4s ease;
+}
+
+.tipLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+  margin: 0 0 8px 0;
+}
+
+.tipHeadline {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 16px 0;
+}
+
+.tipLink {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: gap 0.2s ease;
+
+  &:hover {
+    gap: 10px;
+  }
+}
+
+/* Khối Hoạt Động Gần Đây */
+.recentActivitiesCard {
+  background-color: $surface;
+  border: 1px solid $border-color;
+  padding: 24px;
+  border-radius: 14px;
+}
+
+.activitiesTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: $text-main;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px 0;
+}
+
+.activityList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activityItem {
+  display: flex;
+  gap: 12px;
+}
+
+.activityIndicatorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+
+  &.emerald { background-color: #10b981; }
+  &.indigo { background-color: $primary; }
+  &.rose { background-color: $error; }
+}
+
+.activityContentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.activityText {
+  font-size: 13px;
+  color: $text-main;
+  margin: 0;
+  line-height: 1.4;
+
+  span { font-weight: 600; }
+}
+
+.activityTime {
+  font-size: 11px;
+  color: $text-light;
+}

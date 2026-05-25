@@ -11,13 +11,14 @@ import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
 import OTPVerification from "../pages/OTPVerification";
 import ResetPassword from "../pages/ResetPassword";
+import Admin from "../pages/Admin";
 
 
 function AppRoutes() {
     return (
         <Routes>
             {/* 1. Route cho trang Login: KHÔNG dùng MainLayout */}
-
+            <Route path="/admin" element={<Admin />} />
             {/* 2. Nhóm Route dùng MainLayout (Cần Header/Footer/Sidebar) */}
             <Route element={<MainLayout />}>
                 <Route path="/register" element={<Register />} />
