@@ -1,0 +1,729 @@
+
+$bg-main: #f8fafc;
+$surface: #ffffff;
+$border-color: #e2e8f0;
+
+$text-main: #0f172a;
+$text-muted: #64748b;
+$text-light: #94a3b8;
+
+$primary: #4f46e5;
+$primary-light: #e0e7ff;
+$primary-container: #e0e7ff;
+$on-primary-container: #1e1b4b;
+
+// Màu sắc cho trạng thái đơn hàng
+$status-pending: #d97706;
+$status-pending-bg: #fef3c7;
+$status-confirmed: #2563eb;
+$status-confirmed-bg: #dbeafe;
+$status-shipping: #4f46e5;
+$status-shipping-bg: #e0e7ff;
+$status-completed: #16a34a;
+$status-completed-bg: #dcfce7;
+$status-cancelled: #dc2626;
+$status-cancelled-bg: #fee2e2;
+
+.main {
+  margin-left: 260px; /* Khớp khoảng trống của Sidebar định vị cố định */
+  min-height: 100vh;
+  background-color: $bg-main;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
+}
+
+/* ==========================================================================
+   1. Fixed Top Header
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 64px;
+  width: calc(100% - 260px);
+  background-color: rgba($surface, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 40;
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: center;
+  flex-1: 1;
+  width: 100%;
+  max-width: 440px;
+}
+
+.searchGroup {
+  position: relative;
+  width: 100%;
+
+  .searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+    font-size: 20px;
+    pointer-events: none;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  background-color: #f1f5f9;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 10px 16px 10px 42px;
+  font-size: 14px;
+  color: $text-main;
+  outline: none;
+  transition: all 0.2s ease;
+
+  &:focus {
+    background-color: $surface;
+    border-color: rgba($primary, 0.4);
+    box-shadow: 0 0 0 4px rgba($primary, 0.08);
+  }
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px;
+  color: $text-muted;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #e2e8f0;
+    color: $text-main;
+  }
+}
+
+.divider {
+  height: 32px;
+  width: 1px;
+  background-color: $border-color;
+  margin: 0 8px;
+}
+
+.adminProfile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid $border-color;
+}
+
+.adminName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-main;
+}
+
+/* ==========================================================================
+   2. Page Main Content Container
+   ========================================================================== */
+.pageContent {
+  padding: 96px 32px 32px 32px; /* Top padding bù trừ khoảng hụt của fixed Header */
+
+  @media (max-width: 768px) {
+    padding: 84px 20px 20px 20px;
+  }
+}
+
+.innerContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Title Header Action */
+.pageTitleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.pageTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: $text-main;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $text-muted;
+  margin: 6px 0 0 0;
+}
+
+.createOrderBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: $primary;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba($primary, 0.15);
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: darken($primary, 4%);
+    box-shadow: 0 4px 12px rgba($primary, 0.25);
+  }
+}
+
+/* ==========================================================================
+   3. Stats Bento Grid
+   ========================================================================== */
+.statsBentoGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+
+  @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(5, 1fr); }
+}
+
+.statCard {
+  background-color: $surface;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.statCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.statLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-muted;
+}
+
+.statIcon {
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 20px;
+
+  &.pending { color: $status-pending; background-color: $status-pending-bg; }
+  &.confirmed { color: $status-confirmed; background-color: $status-confirmed-bg; }
+  &.shipping { color: $status-shipping; background-color: $status-shipping-bg; }
+  &.completed { color: $status-completed; background-color: $status-completed-bg; }
+  &.cancelled { color: $status-cancelled; background-color: $status-cancelled-bg; }
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: $text-main;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.statTrend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 8px;
+
+  &.positive { color: #16a34a; }
+  &.negative { color: $status-cancelled; }
+  &.neutral { color: $text-muted; font-weight: 400; }
+}
+
+/* ==========================================================================
+   4. Table & Filters Area Container
+   ========================================================================== */
+.tableContainerCard {
+  background-color: $surface;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+}
+
+/* Filters Header Bar */
+.filtersHeader {
+  padding: 24px;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.filterControlsLeft {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.selectGroupBlock, .dateGroupBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f1f5f9;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+}
+
+.filterMetaLabel {
+  font-size: 13px;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.selectDropdown, .dateInput {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-main;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.filterControlsRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionUtilBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #f1f5f9;
+    color: $text-main;
+  }
+}
+
+/* Table Area Styles */
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.th {
+  padding: 14px 24px;
+  background-color: #fafafa;
+  border-bottom: 1px solid $border-color;
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.textRight { text-align: right; }
+}
+
+.tr {
+  border-bottom: 1px solid rgba($border-color, 0.5);
+  transition: background-color 0.15s ease;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background-color: #f8fafc; }
+
+  &.zebraRow {
+    background-color: rgba(#f1f5f9, 0.2);
+    &:hover { background-color: #f8fafc; }
+  }
+}
+
+.td {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: $text-main;
+  vertical-align: middle;
+
+  &.textRight { text-align: right; }
+}
+
+.orderId {
+  font-weight: 600;
+  color: $primary;
+}
+
+.customerBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.customerName {
+  font-weight: 600;
+  color: $text-main;
+}
+
+.customerEmail {
+  font-size: 12px;
+  color: $text-muted;
+  margin-top: 2px;
+}
+
+.dateTimeText {
+  font-size: 13px;
+  color: $text-main;
+}
+
+.totalPrice {
+  font-weight: 700;
+  color: $text-main;
+}
+
+.paymentBadge {
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  color: $text-muted;
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.pending { color: $status-pending; background-color: $status-pending-bg; }
+  &.confirmed { color: $status-confirmed; background-color: $status-confirmed-bg; }
+  &.shipping { color: $status-shipping; background-color: $status-shipping-bg; }
+  &.completed { color: $status-completed; background-color: $status-completed-bg; }
+  &.cancelled { color: $status-cancelled; background-color: $status-cancelled-bg; }
+}
+
+/* Row Action Buttons */
+.rowActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.actionRowBtn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    color: $primary;
+    background-color: rgba($primary, 0.08);
+  }
+
+  &.moreBtn:hover {
+    color: $text-main;
+    background-color: #e2e8f0;
+  }
+}
+
+/* Pagination Footer */
+.pagination {
+  padding: 20px 24px;
+  border-top: 1px solid $border-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paginationInfoText {
+  font-size: 13px;
+  color: $text-muted;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageNavBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    color: $text-main;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.pageNumberBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-main;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    background-color: #f1f5f9;
+  }
+
+  &.active {
+    background-color: $primary;
+    border-color: $primary;
+    color: #ffffff;
+  }
+}
+
+.ellipsis {
+  padding: 0 4px;
+  font-size: 13px;
+  color: $text-light;
+}
+
+/* ==========================================================================
+   5. Asymmetric Footer Info Summary
+   ========================================================================== */
+.footerSummaryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 48px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.performanceSummaryBox {
+  background-color: #f1f5f9;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+
+  @media (min-width: 1024px) {
+    grid-column: span 2;
+  }
+}
+
+.analyticsIconWrapper {
+  width: 96px;
+  height: 96px;
+  background-color: #cbd5e1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $primary;
+}
+
+.perfContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-main;
+  margin: 0 0 4px 0;
+}
+
+.perfDescription {
+  font-size: 14px;
+  color: $text-muted;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.perfTagsGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.perfTagItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-main;
+}
+
+.dotIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  &.primary { background-color: $primary; }
+  &.amber { background-color: $status-pending; }
+}
+
+/* Alert Notification Banner Card */
+.alertNotificationCard {
+  background-color: #e0e7ff;
+  color: #1e1b4b;
+  padding: 24px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .bgDecorativeIcon {
+      transform: scale(1.1) rotate(0deg);
+    }
+  }
+}
+
+.alertCardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.alertCardText {
+  font-size: 14px;
+  margin: 0 0 16px 0;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+.checkNowBtn {
+  background-color: $surface;
+  color: $primary;
+  border: none;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.bgDecorativeIcon {
+  position: absolute;
+  right: -16px;
+  bottom: -16px;
+  font-size: 120px;
+  opacity: 0.08;
+  transform: rotate(12deg);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
