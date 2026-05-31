@@ -12,6 +12,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import OTPVerification from "../pages/OTPVerification";
 import ResetPassword from "../pages/ResetPassword";
 import Admin from "../pages/Admin";
+import Person from '../pages/Person';
 
 
 function AppRoutes() {
@@ -31,6 +32,7 @@ function AppRoutes() {
                 <Route path="/detail/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/person" element={<Person />} />
             </Route>
 
             {/* 3. Xử lý khi người dùng nhập sai URL (Redirect về Home hoặc trang 404) */}
